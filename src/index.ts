@@ -19,12 +19,11 @@ const splitGribChunks = (data: Buffer): Array<Buffer> => {
 const splitSectionChunks = (data: Buffer): Array<Buffer> => {
   const first4Bytes = data.slice(0, 4)
 
-  // First section is always 16 octets and starts with GRIB
-  if (first4Bytes.toString() === 'GRIB') return [data.slice(0, 16), ...splitSectionChunks(data.slice(16))]
-  // Final section should equal 7777
+  // Final section should equal '7777'
   if (first4Bytes.equals(Buffer.from('7777'))) return [data]
 
-  const length = first4Bytes.readUInt32BE()
+  // First section length is always 16 bytes long and is identified by the first 4 bytes being 'GRIB'
+  const length = first4Bytes.toString() === 'GRIB' ? 16 : first4Bytes.readUInt32BE()
 
   const section = data.slice(0, length)
 
