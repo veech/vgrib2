@@ -1,19 +1,32 @@
 export const readGrib = (data: Buffer) => {
-  const gribs = splitGribs(data)
+  const gribChunks = splitGribChunks(data)
 
-  return gribs
+  const parsedGribs = gribChunks.map(splitSectionChunks)
+
+  return parsedGribs
 }
 
-const splitGribs = (data: Buffer): Array<Buffer> => {
+const splitGribChunks = (data: Buffer): Array<Buffer> => {
   if (data.length === 0) return []
-
-  const gribCoded = data.slice(0, 4).toString()
-
-  if (gribCoded !== 'GRIB') throw new Error('Incorrectly Formatted GRIB')
 
   const length = Number(data.slice(8, 16).readBigUInt64BE())
 
   const gribData = data.slice(0, length)
 
-  return [gribData, ...splitGribs(data.slice(length))]
+  return [gribData, ...splitGribChunks(data.slice(length))]
+}
+
+const splitSectionChunks = (data: Buffer): Array<Buffer> => {
+  const first4Bytes = data.slice(0, 4)
+
+  // First section is always 16 octets and starts with GRIB
+  if (first4Bytes.toString() === 'GRIB') return [data.slice(0, 16), ...splitSectionChunks(data.slice(16))]
+  // Final section should equal 7777
+  if (first4Bytes.equals(Buffer.from('7777'))) return [data]
+
+  const length = first4Bytes.readUInt32BE()
+
+  const section = data.slice(0, length)
+
+  return [section, ...splitSectionChunks(data.slice(length))]
 }
