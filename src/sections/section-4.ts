@@ -1,4 +1,4 @@
-import { getTemplate } from '../templates'
+import { getTemplate4 } from '../templates/template-4'
 
 /**
  *  Product Definition Section
@@ -7,7 +7,7 @@ import { getTemplate } from '../templates'
  */
 export const parseSection4 = (section: Buffer) => {
   const productDefinitionTemplate = section.readUInt16BE(7)
-  const productDefinitionValues = getTemplate(`4.${productDefinitionTemplate}`)(section)
+  const productDefinitionValues = getTemplate4(productDefinitionTemplate)(section)
 
   return {
     /** Number of GRIB section */

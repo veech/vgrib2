@@ -1,4 +1,4 @@
-import { getTemplate } from '../templates'
+import { getTemplate5 } from '../templates/template-5'
 
 /**
  *  Data Representation Section
@@ -7,7 +7,7 @@ import { getTemplate } from '../templates'
  */
 export const parseSection5 = (section: Buffer) => {
   const dataRepresentationTemplate = section.readUInt16BE(9)
-  const dataRepresentationValues = getTemplate(`5.${dataRepresentationTemplate}`)(section)
+  const dataRepresentationValues = getTemplate5(dataRepresentationTemplate)(section)
 
   return {
     /** Number of GRIB section */

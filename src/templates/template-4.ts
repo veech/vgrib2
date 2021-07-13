@@ -1,4 +1,18 @@
 /**
+ * @description Returns a template generator for the given template number
+ * @param template Template number
+ * @returns Template generator
+ */
+export const getTemplate4 = (template: number) => {
+  switch (template) {
+    case 2:
+      return template42
+    default:
+      throw new Error(`Template 4.${template} not defined`)
+  }
+}
+
+/**
  * Product Definition Template 4.2
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_temp4-2.shtml)

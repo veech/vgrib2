@@ -1,4 +1,18 @@
 /**
+ * @description Returns a template generator for the given template number
+ * @param template Template number
+ * @returns Template generator
+ */
+export const getTemplate5 = (template: number) => {
+  switch (template) {
+    case 0:
+      return template50
+    default:
+      throw new Error(`Template 5.${template} not defined`)
+  }
+}
+
+/**
  * Data Representation Template 5.0
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_temp5-0.shtml)

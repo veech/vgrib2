@@ -1,9 +1,23 @@
 /**
+ * @description Returns a template generator for the given template number
+ * @param template Template number
+ * @returns Template generator
+ */
+export const getTemplate3 = (template: number) => {
+  switch (template) {
+    case 0:
+      return template30
+    default:
+      throw new Error(`Template 3.${template} not defined`)
+  }
+}
+
+/**
  * Grid Definition Template 3.0
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_temp3-0.shtml)
  */
-export const template30 = (section: Buffer) => {
+const template30 = (section: Buffer) => {
   const basicAngle = section.readUInt32BE(38)
   const subdivisions = section.readUInt32BE(42)
 

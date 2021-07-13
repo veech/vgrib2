@@ -1,4 +1,4 @@
-import { getTemplate } from '../templates'
+import { getTemplate3 } from '../templates/template-3'
 
 /**
  *  Grid Definition Section
@@ -7,7 +7,7 @@ import { getTemplate } from '../templates'
  */
 export const parseSection3 = (section: Buffer) => {
   const gridDefinitionTemplate = section.readUInt16BE(12)
-  const gridTemplateValues = getTemplate(`3.${gridDefinitionTemplate}`)(section)
+  const gridTemplateValues = getTemplate3(gridDefinitionTemplate)(section)
 
   return {
     /** Number of GRIB section */
