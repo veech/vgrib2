@@ -5,6 +5,8 @@
  */
 export const parseSection8 = (section: Buffer) => {
   return {
+    /** Name of Grib section */
+    sectionName: 'End Section',
     /** Section 8 Data */
     data: {
       /** "7777" - Coded according to the International Alphabet Number 5 */

@@ -22,9 +22,7 @@ const parseGribChunk = (data: Buffer) => {
   const sections = splitSectionChunks(data)
   const parsedSections = sections.map(parseSection)
 
-  const grib = parsedSections.reduce((acc, section) => ({ ...acc, ...section.data }), {})
-
-  return grib
+  return parsedSections
 }
 
 const splitSectionChunks = (data: Buffer): Array<Buffer> => {

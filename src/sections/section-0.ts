@@ -7,6 +7,8 @@ export const parseSection0 = (section: Buffer) => {
   return {
     /** Number of GRIB section */
     sectionNumber: 0,
+    /** Name of Grib section */
+    sectionName: 'Indicator Section',
     /** Length of GRIB section (Always 16 for Section 0)*/
     length: 16,
     /** Section 0 Data */

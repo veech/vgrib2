@@ -20,6 +20,8 @@ export const parseSection1 = (section: Buffer) => {
   return {
     /** Number of GRIB section */
     sectionNumber: section.readUInt8(4),
+    /** Name of Grib section */
+    sectionName: 'Identification Section',
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
     /** Section 1 Data */
