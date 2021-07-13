@@ -35,6 +35,8 @@ export const template30 = (section: Buffer) => {
     /** j direction increment */
     dy: section.readInt32BE(67) * ratio,
     /** Scanning mode [Table 3.4](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-4.shtml) */
-    scanMode: section.readUInt8(71)
+    scanMode: section.readUInt8(71),
+    /** Grid Units */
+    gridUnits: 'degrees'
   }
 }
