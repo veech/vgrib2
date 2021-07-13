@@ -32,6 +32,6 @@ export const parseSection = (section: Buffer) => {
       return parseSection7(section)
 
     default:
-      return null
+      throw new Error(`Unknown section number: ${sectionNumber}`)
   }
 }

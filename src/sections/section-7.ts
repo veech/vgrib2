@@ -10,6 +10,6 @@ export const parseSection7 = (section: Buffer) => {
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
     /** Section 7 Data */
-    data: section.slice(5)
+    data: { data: section.slice(5) }
   }
 }
