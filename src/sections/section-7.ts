@@ -15,3 +15,5 @@ export const parseSection7 = (section: Buffer) => {
     data: { data: section.slice(5) }
   }
 }
+
+export type DataSection = ReturnType<typeof parseSection7>

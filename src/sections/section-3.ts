@@ -26,3 +26,5 @@ export const parseSection3 = (section: Buffer) => {
     }
   }
 }
+
+export type GridDefinitionSection = ReturnType<typeof parseSection3>

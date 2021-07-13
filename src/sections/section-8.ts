@@ -14,3 +14,5 @@ export const parseSection8 = (section: Buffer) => {
     }
   }
 }
+
+export type EndSection = ReturnType<typeof parseSection8>

@@ -26,3 +26,5 @@ export const parseSection4 = (section: Buffer) => {
     }
   }
 }
+
+export type ProductDefinitionSection = ReturnType<typeof parseSection4>

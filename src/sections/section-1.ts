@@ -43,3 +43,5 @@ export const parseSection1 = (section: Buffer) => {
     }
   }
 }
+
+export type IdentificationSection = ReturnType<typeof parseSection1>

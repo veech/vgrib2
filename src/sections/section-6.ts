@@ -22,3 +22,5 @@ export const parseSection6 = (section: Buffer) => {
     }
   }
 }
+
+export type BitMapSection = ReturnType<typeof parseSection6>

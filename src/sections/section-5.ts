@@ -26,3 +26,5 @@ export const parseSection5 = (section: Buffer) => {
     }
   }
 }
+
+export type DataRepresentationSection = ReturnType<typeof parseSection5>

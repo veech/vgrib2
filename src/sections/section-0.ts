@@ -24,3 +24,5 @@ export const parseSection0 = (section: Buffer) => {
     }
   }
 }
+
+export type IndicatorSection = ReturnType<typeof parseSection0>
