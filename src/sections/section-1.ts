@@ -22,6 +22,7 @@ export const parseSection1 = (section: Buffer) => {
     sectionNumber: section.readUInt8(4),
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
+    /** Section 1 Data */
     data: {
       /** Identification of originating/generating center [Table 0](https://www.nco.ncep.noaa.gov/pmb/docs/on388/table0.html) */
       center: section.readUInt16BE(5),

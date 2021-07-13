@@ -1,5 +1,6 @@
 import { parseSection0 } from './section-0'
 import { parseSection1 } from './section-1'
+import { parseSection3 } from './section-3'
 
 export const parseSection = (section: Buffer) => {
   const first4Bytes = section.slice(0, 4)
@@ -12,6 +13,10 @@ export const parseSection = (section: Buffer) => {
   switch (sectionNumber) {
     case 1:
       return parseSection1(section)
+    case 2:
+      throw new Error('Section 2 is not supported')
+    case 3:
+      return parseSection3(section)
     default:
       return null
   }
