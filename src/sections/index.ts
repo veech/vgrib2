@@ -4,6 +4,7 @@ import { parseSection3 } from './section-3'
 import { parseSection4 } from './section-4'
 import { parseSection5 } from './section-5'
 import { parseSection6 } from './section-6'
+import { parseSection7 } from './section-7'
 
 export const parseSection = (section: Buffer) => {
   const first4Bytes = section.slice(0, 4)
@@ -26,6 +27,8 @@ export const parseSection = (section: Buffer) => {
       return parseSection5(section)
     case 6:
       return parseSection6(section)
+    case 7:
+      return parseSection7(section)
     default:
       return null
   }
