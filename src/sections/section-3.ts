@@ -17,7 +17,7 @@ export const parseSection3 = (section: Buffer) => {
     /** Section 3 Data */
     data: {
       /** Number of data points */
-      numberPoints: section.readUInt32BE(6),
+      numberOfPoints: section.readUInt32BE(6),
       /** Grid definition template number [Table 3.1](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-1.shtml)*/
       gridDefinitionTemplate,
       ...gridTemplateValues
