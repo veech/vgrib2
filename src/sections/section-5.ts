@@ -1,0 +1,26 @@
+import { getTemplate } from '../templates'
+
+/**
+ *  Data Representation Section
+ *
+ * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_sect5.shtml)
+ */
+export const parseSection5 = (section: Buffer) => {
+  const dataRepresentationTemplate = section.readUInt16BE(9)
+  const dataRepresentationValues = getTemplate(`5.${dataRepresentationTemplate}`)(section)
+
+  return {
+    /** Number of GRIB section */
+    sectionNumber: section.readUInt8(4),
+    /** Length of GRIB section */
+    length: section.readUInt32BE(0),
+    /** Section 5 Data */
+    data: {
+      /** Number of data points where one or more values are specified in Section 7 when a bit map is present, total number of data points when a bit map is absent. */
+      numberOfDataPoints: section.readUInt32BE(5),
+      /** Data representation template number (See [Table 5.0](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table5-0.shtml)) */
+      dataRepresentationTemplate,
+      ...dataRepresentationValues
+    }
+  }
+}
