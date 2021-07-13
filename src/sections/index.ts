@@ -5,12 +5,13 @@ import { parseSection4 } from './section-4'
 import { parseSection5 } from './section-5'
 import { parseSection6 } from './section-6'
 import { parseSection7 } from './section-7'
+import { parseSection8 } from './section-8'
 
 export const parseSection = (section: Buffer) => {
   const first4Bytes = section.slice(0, 4)
 
   if (first4Bytes.toString() === 'GRIB') return parseSection0(section)
-  if (first4Bytes.toString() === '7777') return 'OK'
+  if (first4Bytes.toString() === '7777') return parseSection8(section)
 
   const sectionNumber = section.readUInt8(4)
 
@@ -29,6 +30,7 @@ export const parseSection = (section: Buffer) => {
       return parseSection6(section)
     case 7:
       return parseSection7(section)
+
     default:
       return null
   }
