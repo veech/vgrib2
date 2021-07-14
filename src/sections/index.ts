@@ -7,7 +7,9 @@ import { parseSection6 } from './section-6'
 import { parseSection7 } from './section-7'
 import { parseSection8 } from './section-8'
 
-export const parseSection = (section: Buffer) => {
+export const parseSection = (section: Buffer | null) => {
+  if (!section) return null
+
   const first4Bytes = section.slice(0, 4)
 
   if (first4Bytes.toString() === 'GRIB') return parseSection0(section)

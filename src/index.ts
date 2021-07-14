@@ -1,4 +1,4 @@
-// import { parseSection } from './sections'
+import { parseSection } from './sections'
 
 import { splitGribChunks, splitSectionChunks } from './helpers'
 
@@ -13,5 +13,7 @@ export const readGrib = (data: Buffer) => {
 const parseGribChunk = (data: Buffer) => {
   const sections = splitSectionChunks(data)
 
-  return sections
+  const parsedSections = sections.map(parseSection)
+
+  return parsedSections
 }
