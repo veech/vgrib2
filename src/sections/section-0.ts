@@ -1,3 +1,7 @@
+import { getTable0 } from '../tables/table-0'
+
+export type IndicatorSection = ReturnType<typeof parseSection0>
+
 /**
  *  Indicator Section
  *
@@ -25,4 +29,13 @@ export const parseSection0 = (section: Buffer) => {
   }
 }
 
-export type IndicatorSection = ReturnType<typeof parseSection0>
+export const lookupSection0 = (section: IndicatorSection) => {
+  return {
+    ...section,
+    data: {
+      ...section.data,
+      /** Discipline */
+      discipline: getTable0(0)(section.data.discipline)
+    }
+  }
+}
