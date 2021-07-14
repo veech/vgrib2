@@ -29,6 +29,11 @@ export const parseSection0 = (section: Buffer) => {
   }
 }
 
+/**
+ *
+ * @param section Indictor Section
+ * @returns Indicator Section with corresponding string values
+ */
 export const lookupSection0 = (section: IndicatorSection) => {
   return {
     ...section,

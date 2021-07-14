@@ -1,3 +1,8 @@
+import { getTable } from '../tables/table'
+import { getTable1 } from '../tables/table-1'
+
+export type IdentificationSection = ReturnType<typeof parseSection1>
+
 /**
  *  Identification Section
  *
@@ -44,4 +49,24 @@ export const parseSection1 = (section: Buffer) => {
   }
 }
 
-export type IdentificationSection = ReturnType<typeof parseSection1>
+/**
+ *
+ * @param section Indictor Section
+ * @returns Indicator Section with corresponding string values
+ */
+export const lookupSection1 = (section: IdentificationSection) => {
+  return {
+    ...section,
+    data: {
+      ...section.data,
+      /** Identification of originating/generating center */
+      center: getTable('0')(section.data.center),
+      /** Identification of originating/generating subcenter */
+      subcenter: getTable('C')(section.data.subcenter),
+      /** Significance of reference time */
+      significanceOfRT: getTable1(2)(section.data.subcenter),
+      /** Type of processed data in this GRIB message [Table 1.4](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table1-4.shtml) */
+      typeOfProcessedData: getTable1(4)(section.data.typeOfProcessedData)
+    }
+  }
+}

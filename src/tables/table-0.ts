@@ -17,7 +17,7 @@ export const getTable0 = (table: number) => {
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table0-0.shtml)
  */
-export const lookupTable00 = (code: number) => {
+const lookupTable00 = (code: number) => {
   switch (code) {
     case 0:
       return 'Meteorological Products'
