@@ -1,4 +1,4 @@
-import { parseSection } from './sections'
+// import { parseSection } from './sections'
 
 export const readGrib = (data: Buffer) => {
   const gribChunks = splitGribChunks(data)
@@ -20,21 +20,53 @@ const splitGribChunks = (data: Buffer): Array<Buffer> => {
 
 const parseGribChunk = (data: Buffer) => {
   const sections = splitSectionChunks(data)
-  const parsedSections = sections.map(parseSection)
 
-  return parsedSections
+  return sections
 }
 
-const splitSectionChunks = (data: Buffer): Array<Buffer> => {
-  const first4Bytes = data.slice(0, 4)
+const splitSectionChunks = (data: Buffer): Array<Buffer | null> => {
+  const sections: Array<Buffer> = []
 
-  // Final section should equal '7777'
-  if (first4Bytes.equals(Buffer.from('7777'))) return [data]
+  let currentSection = data
+  // Split sections in file
+  while (currentSection.length !== 0) {
+    const first4Bytes = currentSection.slice(0, 4)
 
-  // First section length is always 16 bytes long and is identified by the first 4 bytes being 'GRIB'
-  const length = first4Bytes.toString() === 'GRIB' ? 16 : first4Bytes.readUInt32BE()
+    // First section length is always 16 bytes long and is identified by the first 4 bytes being 'GRIB'
+    const length = first4Bytes.toString() === 'GRIB' ? 16 : first4Bytes.readUInt32BE()
 
-  const section = data.slice(0, length)
+    const section = currentSection.slice(0, length)
+    sections.push(section)
 
-  return [section, ...splitSectionChunks(data.slice(length))]
+    currentSection = currentSection.slice(length)
+  }
+
+  const allSections: Array<Buffer | null> = [...sections]
+
+  const missingSections = getMissingSections(sections)
+  missingSections.forEach(sectionNumber => allSections.splice(sectionNumber, 0, null))
+
+  return allSections
+}
+
+const getMissingSections = (sections: Array<Buffer>) => {
+  const missingSections: Array<number> = []
+
+  sections.forEach((section, index) => {
+    const sectionNumber = getSectionNumber(section)
+    if (sectionNumber > index + missingSections.length) missingSections.push(index)
+  })
+
+  return missingSections
+}
+
+const getSectionNumber = (section: Buffer) => {
+  const first4Bytes = section.slice(0, 4)
+
+  if (first4Bytes.toString() === 'GRIB') return 0
+  if (first4Bytes.toString() === '7777') return 8
+
+  const sectionNumber = section.readUInt8(4)
+
+  return sectionNumber
 }
