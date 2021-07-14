@@ -51,8 +51,8 @@ export const parseSection1 = (section: Buffer) => {
 
 /**
  *
- * @param section Indictor Section
- * @returns Indicator Section with corresponding string values
+ * @param section Identification Section
+ * @returns Identification Section with corresponding string values
  */
 export const lookupSection1 = (section: IdentificationSection) => {
   return {

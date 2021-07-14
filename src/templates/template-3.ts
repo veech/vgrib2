@@ -1,3 +1,5 @@
+import { getTable3 } from '../tables/table-3'
+
 /**
  * @description Returns a template generator for the given template number
  * @param template Template number
@@ -9,6 +11,21 @@ export const getTemplate3 = (template: number) => {
       return template30
     default:
       throw new Error(`Template 3.${template} not defined`)
+  }
+}
+
+/**
+ * @description Returns a table map for the given table number
+ * @param table Template number
+ * @returns Template Map
+ */
+export const lookupTemplate3 = (template: number) => {
+  switch (template) {
+    case 0:
+      return lookupTemplate30
+
+    default:
+      throw new Error(`Template 3.${template} lookup table not defined`)
   }
 }
 
@@ -52,5 +69,13 @@ const template30 = (section: Buffer) => {
     scanMode: section.readUInt8(71),
     /** Grid Units */
     gridUnits: 'degrees'
+  }
+}
+
+const lookupTemplate30 = (templateValues: ReturnType<typeof template30>) => {
+  return {
+    ...templateValues,
+    /** Shape of Earth [Table 3.2](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-2.shtml) */
+    shape: getTable3(2)(templateValues.shape)
   }
 }
