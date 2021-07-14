@@ -1,13 +1,32 @@
-import { parseSection0 } from './section-0'
-import { parseSection1 } from './section-1'
-import { parseSection3 } from './section-3'
-import { parseSection4 } from './section-4'
-import { parseSection5 } from './section-5'
-import { parseSection6 } from './section-6'
-import { parseSection7 } from './section-7'
-import { parseSection8 } from './section-8'
+import { IndicatorSection, parseSection0 } from './section-0'
+import { IdentificationSection, parseSection1 } from './section-1'
+import { LocalUseSection, parseSection2 } from './section-2'
+import { GridDefinitionSection, parseSection3 } from './section-3'
+import { parseSection4, ProductDefinitionSection } from './section-4'
+import { DataRepresentationSection, parseSection5 } from './section-5'
+import { BitMapSection, parseSection6 } from './section-6'
+import { DataSection, parseSection7 } from './section-7'
+import { EndSection, parseSection8 } from './section-8'
 
-export const parseSection = (section: Buffer | null) => {
+export type ParsedSections = [
+  IndicatorSection,
+  IdentificationSection,
+  LocalUseSection,
+  GridDefinitionSection,
+  ProductDefinitionSection,
+  DataRepresentationSection,
+  BitMapSection,
+  DataSection,
+  EndSection
+]
+
+export const parseSections = (sections: Array<Buffer | null>) => {
+  const parsedSections = sections.map(parseSection)
+
+  return parsedSections as ParsedSections
+}
+
+const parseSection = (section: Buffer | null) => {
   if (!section) return null
 
   const first4Bytes = section.slice(0, 4)
@@ -21,7 +40,7 @@ export const parseSection = (section: Buffer | null) => {
     case 1:
       return parseSection1(section)
     case 2:
-      throw new Error('Section 2 is not supported')
+      return parseSection2(section)
     case 3:
       return parseSection3(section)
     case 4:
