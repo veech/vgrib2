@@ -15,7 +15,7 @@ export const getTemplate3 = (template: number) => {
 }
 
 /**
- * @description Returns a table map for the given table number
+ * @description Returns a template map for the given template number
  * @param table Template number
  * @returns Template Map
  */

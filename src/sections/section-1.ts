@@ -1,4 +1,5 @@
-import { getTable } from '../tables/table'
+import { lookupTable0, lookupTableC } from '../tables/table'
+
 import { getTable1 } from '../tables/table-1'
 
 export type IdentificationSection = ReturnType<typeof parseSection1>
@@ -60,9 +61,9 @@ export const lookupSection1 = (section: IdentificationSection) => {
     data: {
       ...section.data,
       /** Identification of originating/generating center */
-      center: getTable('0')(section.data.center),
+      center: lookupTable0(section.data.center),
       /** Identification of originating/generating subcenter */
-      subcenter: getTable('C')(section.data.subcenter),
+      subcenter: lookupTableC(section.data.subcenter),
       /** Significance of reference time */
       significanceOfRT: getTable1(2)(section.data.subcenter),
       /** Type of processed data in this GRIB message [Table 1.4](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table1-4.shtml) */

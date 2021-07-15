@@ -6,7 +6,7 @@ import { convertData } from './data'
 export const readGrib = (data: Buffer) => {
   const gribChunks = splitGribChunks(data)
 
-  const parsedGribs = parseGribChunk(gribChunks[0])
+  const parsedGribs = gribChunks.map(parseGribChunk)
 
   return parsedGribs
 }

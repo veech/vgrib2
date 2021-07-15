@@ -1,26 +1,9 @@
 /**
- * @description Returns a table map for the given table number
- * @param table Table number
- * @returns Table Map
- */
-export const getTable = (table: string) => {
-  switch (table) {
-    case '0':
-      return lookupTable0
-    case 'C':
-      return lookupTableC
-
-    default:
-      throw new Error(`Table ${table} not defined`)
-  }
-}
-
-/**
  *  Table 0 - National/International Originating Centers
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/on388/table0.html)
  */
-const lookupTable0 = (code: number) => {
+export const lookupTable0 = (code: number) => {
   switch (code) {
     case 1:
       return 'Melbourne (WMC)'
@@ -156,8 +139,6 @@ const lookupTable0 = (code: number) => {
       return 'Darwin (RSMC)'
     case 67:
       return 'Melbourne (RSMC)'
-    case 68:
-      return 'Reserved'
     case 69:
       return 'Wellington (RSMC/RAFC)'
     case 70:
@@ -174,8 +155,6 @@ const lookupTable0 = (code: number) => {
       return 'U.K. Met Office - Exeter (RSMC)'
     case 76:
       return 'Moscow (RSMC/RAFC)'
-    case 77:
-      return 'Reserved'
     case 78:
       return 'Offenbach (RSMC)'
     case 79:
@@ -294,8 +273,6 @@ const lookupTable0 = (code: number) => {
       return 'Uzbekistan (NMC)'
     case 136:
       return 'Viet Nam (NMC)'
-    case 137 - 139:
-      return 'Reserved'
     case 140:
       return 'Bolivia (NMC)'
     case 141:
@@ -313,9 +290,7 @@ const lookupTable0 = (code: number) => {
     case 147:
       return 'National Commission on Space Activities - Argentina'
     case 148:
-      return 'Brazilian Department of Airspace        Control - DECEA'
-    case 149:
-      return 'Reserved'
+      return 'Brazilian Department of Airspace Control - DECEA'
     case 150:
       return 'Antigua and Barbuda (NMC)'
     case 151:
@@ -365,13 +340,9 @@ const lookupTable0 = (code: number) => {
     case 173:
       return 'US National Aeronautics and Space Administration (NASA)'
     case 174:
-      return 'Integrated System Data Management/Marine \n        Environmental Data Service (ISDM/MEDS) - Canada'
-    case 175:
-      return 'Reserved'
+      return 'Integrated System Data Management/Marine Environmental Data Service (ISDM/MEDS) - Canada'
     case 176:
       return 'US Cooperative Institude for Meteorological Satellite Studies'
-    case 177 - 189:
-      return 'Reserved'
     case 190:
       return 'Cook Islands (NMC)'
     case 191:
@@ -402,8 +373,6 @@ const lookupTable0 = (code: number) => {
       return 'Solomon Islands (NMC)'
     case 204:
       return 'Narional Institude of Water and Atmospheric Research - New Zealand'
-    case 205 - 209:
-      return 'Reserved'
     case 210:
       return 'Frascati (ESA/ESRIN)'
     case 211:
@@ -479,13 +448,9 @@ const lookupTable0 = (code: number) => {
     case 246:
       return 'Republic of Moldova (NMC)'
     case 247:
-      return 'Operational Programme for the Exchange\n        of Weather RAdar Information (OPERA) - EUMETNET'
-    case 248 - 249:
-      return 'Reserved'
+      return 'Operational Programme for the Exchange of Weather RAdar Information (OPERA) - EUMETNET'
     case 250:
       return 'COnsortium for Small scale  MOdelling (COSMO)'
-    case 251 - 253:
-      return 'Reserved'
     case 254:
       return 'EUMETSAT Operations Center'
     case 255:
@@ -497,11 +462,266 @@ const lookupTable0 = (code: number) => {
 }
 
 /**
+ *  Table A - Generating Process or Model from Originating Center 7
+ *
+ * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/on388/tablec.html)
+ */
+export const lookupTableA = (code: number) => {
+  switch (code) {
+    case 2:
+      return 'Ultra Violet Index Model'
+    case 3:
+      return 'NCEP/ARL Transport and Dispersion Model'
+    case 4:
+      return 'NCEP/ARL Smoke Model'
+    case 5:
+      return 'Satellite Derived Precipitation and temperatures, from IR (See PDS Octet 41 ... for specific satellite ID)'
+    case 6:
+      return 'NCEP/ARL Dust Model'
+    case 10:
+      return 'Global Wind-Wave Forecast Model'
+    case 11:
+      return 'Global Multi-Grid Wave Model (Static Grids)'
+    case 12:
+      return 'Probabilistic Storm Surge (P-Surge)'
+    case 13:
+      return 'Hurricane Multi-Grid Wave Model'
+    case 14:
+      return 'Extra-tropical Storm Surge Atlantic Domain'
+    case 15:
+      return 'Nearshore Wave Prediction System (NWPS)'
+    case 16:
+      return 'Extra-Tropical Storm Surge (ETSS)'
+    case 17:
+      return 'Extra-tropical Storm Surge Pacific Domain'
+    case 18:
+      return 'Probabilistic Extra-Tropical Storm Surge (P-ETSS)'
+    case 19:
+      return 'Limited-area Fine Mesh (LFM) analysis'
+    case 20:
+      return 'Extra-tropical Storm Surge Micronesia Domain'
+    case 25:
+      return 'Snow Cover Analysis'
+    case 30:
+      return 'Forecaster generated field'
+    case 31:
+      return 'Value added post processed field'
+    case 42:
+      return 'Global Optimum Interpolation Analysis (GOI) from GFS model'
+    case 43:
+      return 'Global Optimum Interpolation Analysis (GOI) from "Final" run'
+    case 44:
+      return 'Sea Surface Temperature Analysis'
+    case 45:
+      return 'Coastal Ocean Circulation Model'
+    case 46:
+      return 'HYCOM - Global'
+    case 47:
+      return 'HYCOM - North Pacific basin'
+    case 48:
+      return 'HYCOM - North Atlantic basin'
+    case 49:
+      return 'Ozone Analysis from TIROS Observations'
+    case 52:
+      return 'Ozone Analysis from Nimbus 7 Observations'
+    case 53:
+      return 'LFM-Fourth Order Forecast Model'
+    case 64:
+      return 'Regional Optimum Interpolation Analysis (ROI)'
+    case 68:
+      return '80 wave triangular, 18-layer Spectral model from GFS model'
+    case 69:
+      return '80 wave triangular, 18 layer Spectral model from "Medium Range Forecast" run'
+    case 70:
+      return 'Quasi-Lagrangian Hurricane Model (QLM)'
+    case 71:
+      return 'Hurricane Weather Research and Forecasting (HWRF) Model'
+    case 72:
+      return 'Hurricane Non-Hydrostatic Multiscale Model on the B Grid (HNMMB)'
+    case 73:
+      return 'Fog Forecast model - Ocean Prod. Center'
+    case 74:
+      return 'Gulf of Mexico Wind/Wave'
+    case 75:
+      return 'Gulf of Alaska Wind/Wave'
+    case 76:
+      return 'Bias corrected Medium Range Forecast'
+    case 77:
+      return '126 wave triangular, 28 layer Spectral model from GFS model'
+    case 78:
+      return '126 wave triangular, 28 layer Spectral model from "Medium Range Forecast" run'
+    case 79:
+      return 'Backup from the previous run'
+    case 80:
+      return '62 wave triangular, 28 layer Spectral model from "Medium Range Forecast" run'
+    case 81:
+      return 'Analysis from GFS (Global Forecast System)'
+    case 82:
+      return 'Analysis from GDAS (Global Data Assimilation System)'
+    case 83:
+      return 'High Resolution Rapid Refresh (HRRR)'
+    case 84:
+      return 'MESO NAM Model (currently 12 km)'
+    case 85:
+      return 'Real Time Ocean Forecast System (RTOFS)'
+    case 86:
+      return 'Early Hurricane Wind Speed Probability Model'
+    case 87:
+      return 'CAC Ensemble Forecasts from Spectral (ENSMB)'
+    case 88:
+      return 'NOAA Wave Watch III (NWW3) Ocean Wave Model'
+    case 89:
+      return 'Non-hydrostatic Meso Model (NMM) (Currently 8 km)'
+    case 90:
+      return '62 wave triangular, 28 layer spectral model extension of the "Medium Range Forecast" run'
+    case 91:
+      return '62 wave triangular, 28 layer spectral model extension of the GFS model'
+    case 92:
+      return '62 wave triangular, 28 layer spectral model run from the "Medium Range Forecast" final analysis'
+    case 93:
+      return '62 wave triangular, 28 layer spectral model run from the T62 GDAS analysis of the "Medium Range Forecast" run'
+    case 94:
+      return 'T170/L42 Global Spectral Model from MRF run'
+    case 95:
+      return 'T126/L42 Global Spectral Model from MRF run'
+    case 96:
+      return 'Global Forecast System Model T1534 - Forecast hours 00-384 T574 - Forecast hours 00-192 T190 - Forecast hours 204-384'
+    case 98:
+      return 'Climate Forecast System Model -- Atmospheric model (GFS) coupled to a multi level ocean model. Currently GFS spectral model at T62, 64 levels coupled to 40 level MOM3 ocean model.'
+    case 99:
+      return 'Miscellaneous Test ID'
+    case 100:
+      return 'Miscellaneous Test ID'
+    case 101:
+      return 'Conventional Observation Re-Analysis (CORE)'
+    case 104:
+      return 'National Blend GRIB'
+    case 105:
+      return 'Rapid Refresh (RAP)'
+    case 107:
+      return 'Global Ensemble Forecast System (GEFS)'
+    case 108:
+      return 'LAMP'
+    case 109:
+      return 'RTMA (Real Time Mesoscale Analysis)'
+    case 110:
+      return 'NAM Model - 15km version'
+    case 111:
+      return 'NAM model, generic resolution (Used in SREF processing)'
+    case 112:
+      return 'WRF-NMM model, generic resolution (Used in various runs) NMM=Nondydrostatic Mesoscale Model (NCEP)'
+    case 113:
+      return 'Products from NCEP SREF processing'
+    case 114:
+      return 'NAEFS Products from joined NCEP, CMC global ensembles'
+    case 115:
+      return 'Downscaled GFS from NAM eXtension'
+    case 116:
+      return 'WRF-EM model, generic resolution (Used in various runs) EM - Eulerian Mass-core (NCAR - aka Advanced Research WRF)'
+    case 117:
+      return 'NEMS GFS Aerosol Component'
+    case 118:
+      return 'URMA (UnRestricted Mesoscale Analysis)'
+    case 119:
+      return 'WAM (Whole Atmosphere Model)'
+    case 120:
+      return 'Ice Concentration Analysis'
+    case 121:
+      return 'Western North Atlantic Regional Wave Model'
+    case 122:
+      return 'Alaska Waters Regional Wave Model'
+    case 123:
+      return 'North Atlantic Hurricane Wave Model'
+    case 124:
+      return 'Eastern North Pacific Regional Wave Model'
+    case 125:
+      return 'North Pacific Hurricane Wave Model'
+    case 126:
+      return 'Sea Ice Forecast Model'
+    case 127:
+      return 'Lake Ice Forecast Model'
+    case 128:
+      return 'Global Ocean Forecast Model'
+    case 129:
+      return 'Global Ocean Data Analysis System (GODAS)'
+    case 130:
+      return 'Merge of fields from the RUC, NAM, and Spectral Model'
+    case 131:
+      return 'Great Lakes Wave Model'
+    case 132:
+      return 'High Resolution Ensemble Forecast (HREF)'
+    case 133:
+      return 'Great Lakes Short Range Wave Model'
+    case 134:
+      return 'Rapid Refresh Forecast System (RRFS)'
+    case 135:
+      return 'Hurricane Analysis and Forecast System (HAFS)'
+    case 140:
+      return 'North American Regional Reanalysis (NARR)'
+    case 141:
+      return 'Land Data Assimilation and Forecast System'
+    case 150:
+      return 'NWS River Forecast System (NWSRFS)'
+    case 151:
+      return 'NWS Flash Flood Guidance System (NWSFFGS)'
+    case 152:
+      return 'WSR-88D Stage II Precipitation Analysis'
+    case 153:
+      return 'WSR-88D Stage III Precipitation Analysis'
+    case 180:
+      return 'Quantitative Precipitation Forecast generated by NCEP'
+    case 181:
+      return 'River Forecast Center Quantitative Precipitation Forecast mosaic generated by NCEP'
+    case 182:
+      return 'River Forecast Center Quantitative Precipitation estimate mosaic generated by NCEP'
+    case 183:
+      return 'NDFD product generated by NCEP/HPC'
+    case 184:
+      return 'Climatological Calibrated Precipitation Analysis - CCPA'
+    case 190:
+      return 'National Convective Weather Diagnostic generated by NCEP/AWC'
+    case 191:
+      return 'Current Icing Potential automated product genterated by NCEP/AWC'
+    case 192:
+      return 'Analysis product from NCEP/AWC'
+    case 193:
+      return 'Forecast product from NCEP/AWC'
+    case 195:
+      return 'Climate Data Assimilation System 2 (CDAS2)'
+    case 196:
+      return 'Climate Data Assimilation System 2 (CDAS2) - used for regeneration runs'
+    case 197:
+      return 'Climate Data Assimilation System (CDAS)'
+    case 198:
+      return 'Climate Data Assimilation System (CDAS) - used for regeneration runs'
+    case 199:
+      return 'Climate Forecast System Reanalysis (CFSR) -- Atmospheric model (GFS) coupled to a multi level ocean, land and seaice model.   Currently GFS spectral model at T382, 64 levels coupled to 40 level MOM4 ocean model.'
+    case 200:
+      return 'CPC Manual Forecast Product'
+    case 201:
+      return 'CPC Automated Product'
+    case 210:
+      return 'EPA Air Quality Forecast - Currently North East US domain'
+    case 211:
+      return 'EPA Air Quality Forecast - Currently Eastern US domain'
+    case 215:
+      return 'SPC Manual Forecast Product'
+    case 220:
+      return 'NCEP/OPC automated product'
+    case 255:
+      return 'Missing'
+
+    default:
+      throw new Error(`Table A missing code value: ${code}`)
+  }
+}
+
+/**
  *  Table C - National Sub-Centerss
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/on388/tablec.html)
  */
-const lookupTableC = (code: number) => {
+export const lookupTableC = (code: number) => {
   switch (code) {
     case 1:
       return 'NCEP Re-Analysis Project'
@@ -539,6 +759,6 @@ const lookupTableC = (code: number) => {
       return 'ESRL Global Systems Division'
 
     default:
-      throw new Error(`Table 0 missing code value: $code}`)
+      throw new Error(`Table C missing code value: ${code}`)
   }
 }
