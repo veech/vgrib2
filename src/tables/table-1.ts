@@ -1,26 +1,9 @@
 /**
- * @description Returns a table map for the given table number
- * @param table Table number
- * @returns Table Map
- */
-export const getTable1 = (table: number) => {
-  switch (table) {
-    case 2:
-      return lookupTable12
-    case 4:
-      return lookupTable14
-
-    default:
-      throw new Error(`Table 1.${table} not defined`)
-  }
-}
-
-/**
  *  Table 1.2 - Significance of Reference Time
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table1-2.shtml)
  */
-const lookupTable12 = (code: number) => {
+export const lookupTable12 = (code: number) => {
   switch (code) {
     case 0:
       return 'Analysis'
@@ -43,7 +26,7 @@ const lookupTable12 = (code: number) => {
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table1-4.shtml)
  */
-const lookupTable14 = (code: number) => {
+export const lookupTable14 = (code: number) => {
   switch (code) {
     case 0:
       return 'Analysis Products'
@@ -69,6 +52,6 @@ const lookupTable14 = (code: number) => {
       return 'Missing'
 
     default:
-      throw new Error(`Table 1.2 missing code value: ${code}`)
+      throw new Error(`Table 1.4 missing code value: ${code}`)
   }
 }

@@ -1,4 +1,4 @@
-import { getTable3 } from '../tables/table-3'
+import { lookupTable32 } from '../tables/table-3'
 
 /**
  * @description Returns a template generator for the given template number
@@ -76,6 +76,6 @@ const lookupTemplate30 = (templateValues: ReturnType<typeof template30>) => {
   return {
     ...templateValues,
     /** Shape of Earth [Table 3.2](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-2.shtml) */
-    shape: getTable3(2)(templateValues.shape)
+    shape: lookupTable32(templateValues.shape)
   }
 }

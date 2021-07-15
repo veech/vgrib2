@@ -1,4 +1,4 @@
-import { getTable0 } from '../tables/table-0'
+import { lookupTable00 } from '../tables/table-0'
 
 export type IndicatorSection = ReturnType<typeof parseSection0>
 
@@ -40,7 +40,7 @@ export const lookupSection0 = (section: IndicatorSection) => {
     data: {
       ...section.data,
       /** Discipline */
-      discipline: getTable0(0)(section.data.discipline)
+      discipline: lookupTable00(section.data.discipline)
     }
   }
 }

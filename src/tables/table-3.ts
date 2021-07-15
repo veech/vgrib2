@@ -1,26 +1,9 @@
 /**
- * @description Returns a table map for the given table number
- * @param table Table number
- * @returns Table Map
- */
-export const getTable3 = (table: number) => {
-  switch (table) {
-    case 1:
-      return lookupTable31
-    case 2:
-      return lookupTable32
-
-    default:
-      throw new Error(`Table 3.${table} not defined`)
-  }
-}
-
-/**
  *  Table 3.1 - Grid Definition Template Number
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-1.shtml)
  */
-const lookupTable31 = (code: number) => {
+export const lookupTable31 = (code: number) => {
   switch (code) {
     case 0:
       return 'Latitude/Longitude (Also called Equidistant Cylindrical or Plate Caree)'
@@ -115,7 +98,7 @@ const lookupTable31 = (code: number) => {
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-1.shtml)
  */
-const lookupTable32 = (code: number) => {
+export const lookupTable32 = (code: number) => {
   switch (code) {
     case 0:
       return 'Earth assumed spherical with radius = 6,367,470.0 m'
@@ -141,6 +124,6 @@ const lookupTable32 = (code: number) => {
       return 'Missing'
 
     default:
-      throw new Error(`Table 3.1 missing code value: ${code}`)
+      throw new Error(`Table 3.2 missing code value: ${code}`)
   }
 }

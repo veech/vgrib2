@@ -1,6 +1,5 @@
 import { lookupTable0, lookupTableC } from '../tables/table'
-
-import { getTable1 } from '../tables/table-1'
+import { lookupTable12, lookupTable14 } from '../tables/table-1'
 
 export type IdentificationSection = ReturnType<typeof parseSection1>
 
@@ -65,9 +64,9 @@ export const lookupSection1 = (section: IdentificationSection) => {
       /** Identification of originating/generating subcenter */
       subcenter: lookupTableC(section.data.subcenter),
       /** Significance of reference time */
-      significanceOfRT: getTable1(2)(section.data.subcenter),
-      /** Type of processed data in this GRIB message [Table 1.4](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table1-4.shtml) */
-      typeOfProcessedData: getTable1(4)(section.data.typeOfProcessedData)
+      significanceOfRT: lookupTable12(section.data.subcenter),
+      /** Type of processed data in this GRIB message */
+      typeOfProcessedData: lookupTable14(section.data.typeOfProcessedData)
     }
   }
 }

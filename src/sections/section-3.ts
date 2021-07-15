@@ -1,5 +1,5 @@
 import { getTemplate3, lookupTemplate3 } from '../templates/template-3'
-import { getTable3 } from '../tables/table-3'
+import { lookupTable31 } from '../tables/table-3'
 
 export type GridDefinitionSection = ReturnType<typeof parseSection3>
 
@@ -44,7 +44,7 @@ export const lookupSection3 = (section: GridDefinitionSection) => {
     data: {
       ...section.data,
       /** Grid definition template */
-      gridDefinitionTemplate: getTable3(1)(gridDefinitionTemplate),
+      gridDefinitionTemplate: lookupTable31(gridDefinitionTemplate),
       /** Grid definition values */
       gridDefinition: lookupTemplate3(gridDefinitionTemplate)(section.data.gridDefinition)
     }

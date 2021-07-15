@@ -1,23 +1,9 @@
 /**
- * @description Returns a table map for the given table number
- * @param table Table number
- * @returns Table Map
- */
-export const getTable0 = (table: number) => {
-  switch (table) {
-    case 0:
-      return lookupTable00
-    default:
-      throw new Error(`Table 0.${table} not defined`)
-  }
-}
-
-/**
  *  Table 0.0 - Discipline of Processed Data
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table0-0.shtml)
  */
-const lookupTable00 = (code: number) => {
+export const lookupTable00 = (code: number) => {
   switch (code) {
     case 0:
       return 'Meteorological Products'
