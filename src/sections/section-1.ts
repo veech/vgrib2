@@ -1,7 +1,8 @@
 import { lookupTable0, lookupTableC } from '../tables/table'
 import { lookupTable12, lookupTable14 } from '../tables/table-1'
 
-export type IdentificationSection = ReturnType<typeof parseSection1>
+export type IdentificationSectionValues = ReturnType<typeof parseSection1>
+export type IdentificationSection = ReturnType<typeof lookupSection1>
 
 /**
  *  Identification Section
@@ -54,7 +55,7 @@ export const parseSection1 = (section: Buffer) => {
  * @param ids Identification Section
  * @returns Identification Section with corresponding string values
  */
-export const lookupSection1 = (ids: IdentificationSection) => {
+export const lookupSection1 = (ids: IdentificationSectionValues) => {
   return {
     ...ids,
     contents: {

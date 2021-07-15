@@ -1,3 +1,6 @@
+export type EndSectionValues = ReturnType<typeof parseSection8>
+export type EndSection = ReturnType<typeof parseSection8>
+
 /**
  *  End Section
  *
@@ -14,5 +17,3 @@ export const parseSection8 = (section: Buffer) => {
     }
   }
 }
-
-export type EndSection = ReturnType<typeof parseSection8>

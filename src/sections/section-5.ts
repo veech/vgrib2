@@ -1,7 +1,8 @@
 import { lookupTable50 } from '../tables/table-5'
 import { getTemplate5, lookupTemplate5 } from '../templates/template-5'
 
-export type DataRepresentationSection = ReturnType<typeof parseSection5>
+export type DataRepresentationSectionValues = ReturnType<typeof parseSection5>
+export type DataRepresentationSection = ReturnType<typeof lookupSection5>
 
 /**
  *  Data Representation Section
@@ -36,7 +37,7 @@ export const parseSection5 = (section: Buffer) => {
  * @param drs Data Representation Section
  * @returns Data Representation Section with corresponding string values
  */
-export const lookupSection5 = (drs: DataRepresentationSection) => {
+export const lookupSection5 = (drs: DataRepresentationSectionValues) => {
   const { dataRepresentationTemplate, dataRepresentation } = drs.contents
 
   return {

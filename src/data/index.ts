@@ -1,4 +1,4 @@
-import { DataRepresentationSection } from '../sections/section-5'
+import { DataRepresentationSectionValues } from '../sections/section-5'
 
 import { simpleUnpacking } from './simple-unpacking'
 
@@ -8,8 +8,8 @@ import { simpleUnpacking } from './simple-unpacking'
  * @param data Data to be converted
  * @returns Converted data
  */
-export const convertData = (drs: DataRepresentationSection, data: Buffer) => {
-  const { dataRepresentationTemplate } = drs.data
+export const convertData = (drs: DataRepresentationSectionValues, data: Buffer) => {
+  const { dataRepresentationTemplate } = drs.contents
 
   switch (dataRepresentationTemplate) {
     case 0:

@@ -1,7 +1,8 @@
 import { getTemplate3, lookupTemplate3 } from '../templates/template-3'
 import { lookupTable31 } from '../tables/table-3'
 
-export type GridDefinitionSection = ReturnType<typeof parseSection3>
+export type GridDefinitionSectionValues = ReturnType<typeof parseSection3>
+export type GridDefinitionSection = ReturnType<typeof lookupSection3>
 
 /**
  *  Grid Definition Section
@@ -36,7 +37,7 @@ export const parseSection3 = (section: Buffer) => {
  * @param gds Grid Definition Section
  * @returns Grid Definition Section with corresponding string values
  */
-export const lookupSection3 = (gds: GridDefinitionSection) => {
+export const lookupSection3 = (gds: GridDefinitionSectionValues) => {
   const { gridDefinitionTemplate } = gds.contents
 
   return {

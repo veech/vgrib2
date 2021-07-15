@@ -1,3 +1,6 @@
+export type BitMapSectionValues = ReturnType<typeof parseSection6>
+export type BitMapSection = ReturnType<typeof parseSection6>
+
 /**
  *  Bit-Map Section
  *
@@ -22,5 +25,3 @@ export const parseSection6 = (section: Buffer) => {
     }
   }
 }
-
-export type BitMapSection = ReturnType<typeof parseSection6>

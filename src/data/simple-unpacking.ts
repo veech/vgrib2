@@ -1,12 +1,12 @@
-import { DataRepresentationSection } from '../sections/section-5'
+import { DataRepresentationSectionValues } from '../sections/section-5'
 
 /**
  * Data Template 7.0
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_temp7-0.shtml)
  */
-export const simpleUnpacking = (drs: DataRepresentationSection, data: Buffer) => {
-  const { dataRepresentation } = drs.data
+export const simpleUnpacking = (drs: DataRepresentationSectionValues, data: Buffer) => {
+  const { dataRepresentation } = drs.contents
 
   const nb = dataRepresentation.numberOfBits
 

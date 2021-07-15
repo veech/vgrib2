@@ -1,9 +1,10 @@
 import { lookupTable40 } from '../tables/table-4'
 import { getTemplate4, lookupTemplate4 } from '../templates/template-4'
 
-import { IndicatorSection } from './section-0'
+import { IndicatorSectionValues } from './section-0'
 
-export type ProductDefinitionSection = ReturnType<typeof parseSection4>
+export type ProductDefinitionSectionValues = ReturnType<typeof parseSection4>
+export type ProductDefinitionSection = ReturnType<typeof lookupSection4>
 
 /**
  *  Product Definition Section
@@ -39,7 +40,7 @@ export const parseSection4 = (section: Buffer) => {
  * @param ins Indicator Section
  * @returns Product Definition Section with corresponding string values
  */
-export const lookupSection4 = (pds: ProductDefinitionSection, ins: IndicatorSection) => {
+export const lookupSection4 = (pds: ProductDefinitionSectionValues, ins: IndicatorSectionValues) => {
   const { productDefinitionTemplate, productDefinition } = pds.contents
   const { discipline } = ins.contents
 

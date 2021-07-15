@@ -1,6 +1,7 @@
 import { lookupTable00 } from '../tables/table-0'
 
-export type IndicatorSection = ReturnType<typeof parseSection0>
+export type IndicatorSectionValues = ReturnType<typeof parseSection0>
+export type IndicatorSection = ReturnType<typeof lookupSection0>
 
 /**
  *  Indicator Section
@@ -34,7 +35,7 @@ export const parseSection0 = (section: Buffer) => {
  * @param ins Indictor Section
  * @returns Indicator Section with corresponding string values
  */
-export const lookupSection0 = (ins: IndicatorSection) => {
+export const lookupSection0 = (ins: IndicatorSectionValues) => {
   return {
     ...ins,
     contents: {
