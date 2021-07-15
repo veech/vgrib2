@@ -19,44 +19,23 @@ export const splitGribChunks = (data: Buffer): Array<Buffer> => {
  * @returns Array of Section Buffers where the index of the item corresponds to the section number. If a section is missing, it will be represented as null
  */
 export const splitSectionChunks = (gribChunk: Buffer): Array<Buffer | null> => {
-  const sections: Array<Buffer> = []
+  const sections: Array<Buffer | null> = new Array(9).fill(null)
 
   let currentSection = gribChunk
   // Split sections in file
   while (currentSection.length !== 0) {
-    const first4Bytes = currentSection.slice(0, 4)
+    const sectionNumber = getSectionNumber(currentSection)
 
     // First section length is always 16 bytes long and is identified by the first 4 bytes being 'GRIB'
-    const length = first4Bytes.toString() === 'GRIB' ? 16 : first4Bytes.readUInt32BE()
+    const length = sectionNumber === 0 ? 16 : currentSection.readUInt32BE()
 
     const section = currentSection.slice(0, length)
-    sections.push(section)
-
     currentSection = currentSection.slice(length)
+
+    sections[sectionNumber] = section
   }
 
-  const allSections: Array<Buffer | null> = [...sections]
-
-  const missingSections = getMissingSections(sections)
-  missingSections.forEach(sectionNumber => allSections.splice(sectionNumber, 0, null))
-
-  return allSections
-}
-
-/**
- *
- * @param sections Array of Section Buffers where sections are in order but could have missing sections
- * @returns Array of section numbers that are missing from the input array
- */
-export const getMissingSections = (sections: Array<Buffer>): Array<number> => {
-  const missingSections: Array<number> = []
-
-  sections.forEach((section, index) => {
-    const sectionNumber = getSectionNumber(section)
-    if (sectionNumber > index + missingSections.length) missingSections.push(index)
-  })
-
-  return missingSections
+  return sections
 }
 
 /**
