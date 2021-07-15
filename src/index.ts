@@ -15,5 +15,17 @@ const parseGribChunk = (gribChunk: Buffer) => {
   const sectionValues = parseSections(sectionChunks)
   const sections = lookupSections(sectionValues)
 
-  return sections
+  const grib = {
+    ...sections[0].contents,
+    ...sections[1].contents,
+    // ...sections[2].contents,
+    ...sections[3].contents,
+    ...sections[4].contents,
+    ...sections[5].contents,
+    ...sections[6].contents,
+    ...sections[7].contents,
+    ...sections[8].contents
+  }
+
+  return grib
 }
