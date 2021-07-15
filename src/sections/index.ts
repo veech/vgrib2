@@ -1,8 +1,10 @@
+import { getSectionNumber } from '../helpers'
+
 import { IndicatorSection, parseSection0 } from './section-0'
 import { IdentificationSection, parseSection1 } from './section-1'
 import { LocalUseSection, parseSection2 } from './section-2'
 import { GridDefinitionSection, parseSection3 } from './section-3'
-import { parseSection4, ProductDefinitionSection } from './section-4'
+import { ProductDefinitionSection, parseSection4 } from './section-4'
 import { DataRepresentationSection, parseSection5 } from './section-5'
 import { BitMapSection, parseSection6 } from './section-6'
 import { DataSection, parseSection7 } from './section-7'
@@ -29,14 +31,11 @@ export const parseSections = (sections: Array<Buffer | null>) => {
 const parseSection = (section: Buffer | null) => {
   if (!section) return null
 
-  const first4Bytes = section.slice(0, 4)
-
-  if (first4Bytes.toString() === 'GRIB') return parseSection0(section)
-  if (first4Bytes.toString() === '7777') return parseSection8(section)
-
-  const sectionNumber = section.readUInt8(4)
+  const sectionNumber = getSectionNumber(section)
 
   switch (sectionNumber) {
+    case 0:
+      return parseSection0(section)
     case 1:
       return parseSection1(section)
     case 2:
@@ -51,6 +50,8 @@ const parseSection = (section: Buffer | null) => {
       return parseSection6(section)
     case 7:
       return parseSection7(section)
+    case 8:
+      return parseSection8(section)
 
     default:
       throw new Error(`Unknown section number: ${sectionNumber}`)
