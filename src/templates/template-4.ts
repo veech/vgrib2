@@ -35,7 +35,7 @@ export const lookupTemplate4 = (template: number) => {
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_temp4-2.shtml)
  */
-export const template42 = (section: Buffer) => {
+const template42 = (section: Buffer) => {
   return {
     /** Paramater category (see Code [Table 4.1](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-1.shtml)) */
     parameterCategory: section.readUInt8(9),

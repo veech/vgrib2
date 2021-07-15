@@ -1,4 +1,7 @@
-import { getTemplate5 } from '../templates/template-5'
+import { lookupTable50 } from '../tables/table-5'
+import { getTemplate5, lookupTemplate5 } from '../templates/template-5'
+
+export type DataRepresentationSection = ReturnType<typeof parseSection5>
 
 /**
  *  Data Representation Section
@@ -7,7 +10,7 @@ import { getTemplate5 } from '../templates/template-5'
  */
 export const parseSection5 = (section: Buffer) => {
   const dataRepresentationTemplate = section.readUInt16BE(9)
-  const dataRepresentationValues = getTemplate5(dataRepresentationTemplate)(section)
+  const dataRepresentation = getTemplate5(dataRepresentationTemplate)(section)
 
   return {
     /** Number of GRIB section */
@@ -22,9 +25,28 @@ export const parseSection5 = (section: Buffer) => {
       numberOfDataPoints: section.readUInt32BE(5),
       /** Data representation template number (See [Table 5.0](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table5-0.shtml)) */
       dataRepresentationTemplate,
-      ...dataRepresentationValues
+      /** Data representation */
+      dataRepresentation
     }
   }
 }
 
-export type DataRepresentationSection = ReturnType<typeof parseSection5>
+/**
+ *
+ * @param section Data Representation Section
+ * @returns Data Representation Section with corresponding string values
+ */
+export const lookupSection5 = (drs: DataRepresentationSection) => {
+  const { dataRepresentationTemplate, dataRepresentation } = drs.data
+
+  return {
+    ...drs,
+    data: {
+      ...drs.data,
+      /** Data representation template */
+      dataRepresentationTemplate: lookupTable50(dataRepresentationTemplate),
+      /** Data representation */
+      dataRepresentation: lookupTemplate5(dataRepresentationTemplate)(dataRepresentation)
+    }
+  }
+}

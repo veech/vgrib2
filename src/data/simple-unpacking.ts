@@ -6,11 +6,13 @@ import { DataRepresentationSection } from '../sections/section-5'
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_temp7-0.shtml)
  */
 export const simpleUnpacking = (drs: DataRepresentationSection, data: Buffer) => {
-  const nb = drs.data.numberOfBits
+  const { dataRepresentation } = drs.data
 
-  const D = drs.data.decimalScaleFactor
-  const R = drs.data.referenceValue
-  const E = drs.data.binaryScaleFactor
+  const nb = dataRepresentation.numberOfBits
+
+  const D = dataRepresentation.decimalScaleFactor
+  const R = dataRepresentation.referenceValue
+  const E = dataRepresentation.binaryScaleFactor
 
   const DD = Math.pow(10, D)
   const EE = Math.pow(2, E)
