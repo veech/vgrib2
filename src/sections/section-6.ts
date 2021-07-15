@@ -15,8 +15,8 @@ export const parseSection6 = (section: Buffer) => {
     sectionName: 'Bit-Map Section',
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
-    /** Section 6 Data */
-    data: {
+    /** Section 6 Contents */
+    contents: {
       /** Bit-map indicator (See [Table 6.0](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table6-0.shtml)) */
       bitMapIndicator
     }

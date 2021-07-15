@@ -21,8 +21,8 @@ export const parseSection4 = (section: Buffer) => {
     sectionName: 'Product Definition Section',
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
-    /** Section 4 Data */
-    data: {
+    /** Section 4 Contents */
+    contents: {
       /** Number of coordinate values after template */
       coordinateValues: section.readUInt16BE(5),
       /** Product definition template number [Table 4.0](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-0.shtml) */
@@ -40,13 +40,13 @@ export const parseSection4 = (section: Buffer) => {
  * @returns Product Definition Section with corresponding string values
  */
 export const lookupSection4 = (pds: ProductDefinitionSection, ins: IndicatorSection) => {
-  const { productDefinitionTemplate, productDefinition } = pds.data
-  const { discipline } = ins.data
+  const { productDefinitionTemplate, productDefinition } = pds.contents
+  const { discipline } = ins.contents
 
   return {
     ...pds,
-    data: {
-      ...pds.data,
+    contents: {
+      ...pds.contents,
       /** Product definition template */
       productDefinitionTemplate: lookupTable40(productDefinitionTemplate),
       /** Product definition */

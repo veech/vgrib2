@@ -19,8 +19,8 @@ export const parseSection3 = (section: Buffer) => {
     sectionName: 'Grid Definition Section',
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
-    /** Section 3 Data */
-    data: {
+    /** Section 3 Contents */
+    contents: {
       /** Number of data points */
       numberOfPoints: section.readUInt32BE(6),
       /** Grid definition template number [Table 3.1](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-1.shtml) */
@@ -37,16 +37,16 @@ export const parseSection3 = (section: Buffer) => {
  * @returns Grid Definition Section with corresponding string values
  */
 export const lookupSection3 = (gds: GridDefinitionSection) => {
-  const { gridDefinitionTemplate } = gds.data
+  const { gridDefinitionTemplate } = gds.contents
 
   return {
     ...gds,
     data: {
-      ...gds.data,
+      ...gds.contents,
       /** Grid definition template */
       gridDefinitionTemplate: lookupTable31(gridDefinitionTemplate),
       /** Grid definition values */
-      gridDefinition: lookupTemplate3(gridDefinitionTemplate)(gds.data.gridDefinition)
+      gridDefinition: lookupTemplate3(gridDefinitionTemplate)(gds.contents.gridDefinition)
     }
   }
 }

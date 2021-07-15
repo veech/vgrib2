@@ -17,8 +17,8 @@ export const parseSection7 = (section: Buffer) => {
     sectionName: 'Data Section',
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
-    /** Section 7 Data */
-    data: { data: section.slice(5) }
+    /** Section 7 Contents */
+    contents: { data: section.slice(5) }
   }
 }
 
@@ -31,8 +31,8 @@ export const parseSection7 = (section: Buffer) => {
 export const lookupSection7 = (ds: DataSection, drs: DataRepresentationSection) => {
   return {
     ...ds,
-    data: {
-      data: convertData(drs, ds.data.data)
+    contents: {
+      data: convertData(drs, ds.contents.data)
     }
   }
 }

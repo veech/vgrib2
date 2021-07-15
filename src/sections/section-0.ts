@@ -15,8 +15,8 @@ export const parseSection0 = (section: Buffer) => {
     sectionName: 'Indicator Section',
     /** Length of GRIB section (Always 16 for Section 0)*/
     length: 16,
-    /** Section 0 Data */
-    data: {
+    /** Section 0 Contents */
+    contents: {
       /** GRIB string encoded */
       gribEncoded: section.slice(0, 4).toString(),
       /** Discipline [Table 0.0](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table0-0.shtml) */
@@ -37,10 +37,10 @@ export const parseSection0 = (section: Buffer) => {
 export const lookupSection0 = (ins: IndicatorSection) => {
   return {
     ...ins,
-    data: {
-      ...ins.data,
+    contents: {
+      ...ins.contents,
       /** Discipline */
-      discipline: lookupTable00(ins.data.discipline)
+      discipline: lookupTable00(ins.contents.discipline)
     }
   }
 }

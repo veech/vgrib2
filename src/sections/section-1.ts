@@ -29,8 +29,8 @@ export const parseSection1 = (section: Buffer) => {
     sectionName: 'Identification Section',
     /** Length of GRIB section */
     length: section.readUInt32BE(0),
-    /** Section 1 Data */
-    data: {
+    /** Section 1 Contents */
+    contents: {
       /** Identification of originating/generating center [Table 0](https://www.nco.ncep.noaa.gov/pmb/docs/on388/table0.html) */
       center: section.readUInt16BE(5),
       /** Identification of originating/generating subcenter [Table C](https://www.nco.ncep.noaa.gov/pmb/docs/on388/tablec.html) */
@@ -57,16 +57,16 @@ export const parseSection1 = (section: Buffer) => {
 export const lookupSection1 = (ids: IdentificationSection) => {
   return {
     ...ids,
-    data: {
-      ...ids.data,
+    contents: {
+      ...ids.contents,
       /** Identification of originating/generating center */
-      center: lookupTable0(ids.data.center),
+      center: lookupTable0(ids.contents.center),
       /** Identification of originating/generating subcenter */
-      subcenter: lookupTableC(ids.data.subcenter),
+      subcenter: lookupTableC(ids.contents.subcenter),
       /** Significance of reference time */
-      significanceOfRT: lookupTable12(ids.data.subcenter),
+      significanceOfRT: lookupTable12(ids.contents.subcenter),
       /** Type of processed data in this GRIB message */
-      typeOfProcessedData: lookupTable14(ids.data.typeOfProcessedData)
+      typeOfProcessedData: lookupTable14(ids.contents.typeOfProcessedData)
     }
   }
 }
