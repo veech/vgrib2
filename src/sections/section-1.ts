@@ -51,22 +51,22 @@ export const parseSection1 = (section: Buffer) => {
 
 /**
  *
- * @param section Identification Section
+ * @param ids Identification Section
  * @returns Identification Section with corresponding string values
  */
-export const lookupSection1 = (section: IdentificationSection) => {
+export const lookupSection1 = (ids: IdentificationSection) => {
   return {
-    ...section,
+    ...ids,
     data: {
-      ...section.data,
+      ...ids.data,
       /** Identification of originating/generating center */
-      center: lookupTable0(section.data.center),
+      center: lookupTable0(ids.data.center),
       /** Identification of originating/generating subcenter */
-      subcenter: lookupTableC(section.data.subcenter),
+      subcenter: lookupTableC(ids.data.subcenter),
       /** Significance of reference time */
-      significanceOfRT: lookupTable12(section.data.subcenter),
+      significanceOfRT: lookupTable12(ids.data.subcenter),
       /** Type of processed data in this GRIB message */
-      typeOfProcessedData: lookupTable14(section.data.typeOfProcessedData)
+      typeOfProcessedData: lookupTable14(ids.data.typeOfProcessedData)
     }
   }
 }

@@ -33,7 +33,7 @@ export const parseSection5 = (section: Buffer) => {
 
 /**
  *
- * @param section Data Representation Section
+ * @param drs Data Representation Section
  * @returns Data Representation Section with corresponding string values
  */
 export const lookupSection5 = (drs: DataRepresentationSection) => {

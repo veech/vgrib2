@@ -31,16 +31,16 @@ export const parseSection0 = (section: Buffer) => {
 
 /**
  *
- * @param section Indictor Section
+ * @param ins Indictor Section
  * @returns Indicator Section with corresponding string values
  */
-export const lookupSection0 = (section: IndicatorSection) => {
+export const lookupSection0 = (ins: IndicatorSection) => {
   return {
-    ...section,
+    ...ins,
     data: {
-      ...section.data,
+      ...ins.data,
       /** Discipline */
-      discipline: lookupTable00(section.data.discipline)
+      discipline: lookupTable00(ins.data.discipline)
     }
   }
 }

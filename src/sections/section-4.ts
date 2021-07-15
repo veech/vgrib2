@@ -35,7 +35,8 @@ export const parseSection4 = (section: Buffer) => {
 
 /**
  *
- * @param section Product Definition Section
+ * @param pds Product Definition Section
+ * @param ins Indicator Section
  * @returns Product Definition Section with corresponding string values
  */
 export const lookupSection4 = (pds: ProductDefinitionSection, ins: IndicatorSection) => {

@@ -33,20 +33,20 @@ export const parseSection3 = (section: Buffer) => {
 
 /**
  *
- * @param section Grid Definition Section
+ * @param gds Grid Definition Section
  * @returns Grid Definition Section with corresponding string values
  */
-export const lookupSection3 = (section: GridDefinitionSection) => {
-  const { gridDefinitionTemplate } = section.data
+export const lookupSection3 = (gds: GridDefinitionSection) => {
+  const { gridDefinitionTemplate } = gds.data
 
   return {
-    ...section,
+    ...gds,
     data: {
-      ...section.data,
+      ...gds.data,
       /** Grid definition template */
       gridDefinitionTemplate: lookupTable31(gridDefinitionTemplate),
       /** Grid definition values */
-      gridDefinition: lookupTemplate3(gridDefinitionTemplate)(section.data.gridDefinition)
+      gridDefinition: lookupTemplate3(gridDefinitionTemplate)(gds.data.gridDefinition)
     }
   }
 }
