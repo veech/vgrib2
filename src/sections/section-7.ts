@@ -1,3 +1,9 @@
+import { DataRepresentationSection } from './section-5'
+
+import { convertData } from '../data'
+
+export type DataSection = ReturnType<typeof parseSection7>
+
 /**
  *  Data Section
  *
@@ -16,4 +22,17 @@ export const parseSection7 = (section: Buffer) => {
   }
 }
 
-export type DataSection = ReturnType<typeof parseSection7>
+/**
+ *
+ * @param ds Data Section
+ * @param drs Data Representation Section
+ * @returns Data Section with corresponding string values
+ */
+export const lookupSection7 = (ds: DataSection, drs: DataRepresentationSection) => {
+  return {
+    ...ds,
+    data: {
+      data: convertData(drs, ds.data.data)
+    }
+  }
+}
