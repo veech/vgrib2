@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/vgrib2.svg)](https://badge.fury.io/js/vgrib2)
+
 # vgrib2
 
 A library for parsing GRIB files written entirely in Typescript
