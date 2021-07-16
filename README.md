@@ -1,11 +1,11 @@
-# ts-grib2
+# vgrib2
 
 A library for parsing GRIB files written entirely in Typescript
 
 ## Installation
 
 ```
-$ npm install ts-grib2
+$ npm install vgrib2
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ $ npm install ts-grib2
 
 ```typescript
 import fs from 'fs'
-import { GRIB } from 'ts-grib2'
+import { GRIB } from 'vgrib2'
 
 const gribFile = fs.readFileSync('./path/to/file.grib2')
 

@@ -26,9 +26,9 @@
     "netcdf"
   ],
   "peerDependencies": {},
-  "name": "ts-grib2",
+  "name": "vgrib2",
   "author": "Alessandro Vecchi",
-  "module": "dist/ts-grib2.esm.js",
+  "module": "dist/vgrib2.esm.js",
   "devDependencies": {
     "tsdx": "^0.14.1",
     "tslib": "^2.3.0",
