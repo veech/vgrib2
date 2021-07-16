@@ -1,5 +1,3 @@
-import { getSectionNumber } from '../helpers'
-
 import { IndicatorSection, IndicatorSectionValues, lookupSection0, parseSection0 } from './section-0'
 import { IdentificationSection, IdentificationSectionValues, lookupSection1, parseSection1 } from './section-1'
 import { LocalUseSection, LocalUseSectionValues, parseSection2 } from './section-2'
@@ -34,16 +32,15 @@ export type LookedupSections = [
   EndSection
 ]
 
+/**
+ *
+ * @param sections Array of GRIB Section Buffers
+ * @returns Array of Parsed Sections where index corresponds to section number
+ */
 export const parseSections = (sections: Array<Buffer | null>) => {
   const parsedSections = sections.map(parseSection)
 
   return parsedSections as ParsedSections
-}
-
-export const lookupSections = (parsedSections: ParsedSections) => {
-  const [ins, ids, lus, gds, pds, drs, bms, ds, es] = parsedSections
-
-  return [lookupSection0(ins), lookupSection1(ids), lus, lookupSection3(gds), lookupSection4(pds, ins), lookupSection5(drs), bms, lookupSection7(ds, drs), es] as LookedupSections
 }
 
 const parseSection = (section: Buffer | null) => {
@@ -74,4 +71,31 @@ const parseSection = (section: Buffer | null) => {
     default:
       throw new Error(`Unknown section number: ${sectionNumber}`)
   }
+}
+
+/**
+ *
+ * @param parsedSections Array of Parsed Sections
+ * @returns Array of Sections with values looked up in tables
+ */
+export const lookupSections = (parsedSections: ParsedSections) => {
+  const [ins, ids, lus, gds, pds, drs, bms, ds, es] = parsedSections
+
+  return [lookupSection0(ins), lookupSection1(ids), lus, lookupSection3(gds), lookupSection4(pds, ins), lookupSection5(drs), bms, lookupSection7(ds, drs), es] as LookedupSections
+}
+
+/**
+ *
+ * @param section Buffer containing GRIB Section data
+ * @returns Section number of the input GRIB Section data
+ */
+export const getSectionNumber = (section: Buffer): number => {
+  const first4Bytes = section.slice(0, 4)
+
+  if (first4Bytes.toString() === 'GRIB') return 0
+  if (first4Bytes.toString() === '7777') return 8
+
+  const sectionNumber = section.readUInt8(4)
+
+  return sectionNumber
 }
