@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -17,6 +17,14 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build"
   },
+  "keywords": [
+    "grib",
+    "grib2",
+    "weather",
+    "noaa",
+    "ecmwf",
+    "netcdf"
+  ],
   "peerDependencies": {},
   "name": "ts-grib2",
   "author": "Alessandro Vecchi",
