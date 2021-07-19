@@ -42,7 +42,7 @@ export const lookupSection3 = (gds: GridDefinitionSectionValues) => {
 
   return {
     ...gds,
-    data: {
+    contents: {
       ...gds.contents,
       /** Grid definition template */
       gridDefinitionTemplate: lookupTable31(gridDefinitionTemplate),

@@ -30,10 +30,21 @@ export const splitSectionChunks = (gribChunk: Buffer): Array<Buffer | null> => {
 
 /**
  *
+ * @param sections Array of GRIB Section Buffers
+ * @returns Array of Parsed Sections where index corresponds to section number
+ */
+export const parseSections = (sections: Array<Buffer | null>) => {
+  const parsedSections = sections.map(parseSection)
+
+  return parsedSections as SectionValues
+}
+
+/**
+ *
  * @param section Buffer containing GRIB Section data
  * @returns Parsed Section Values
  */
-export const parseSection = (section: Buffer | null) => {
+const parseSection = (section: Buffer | null) => {
   if (!section) return null
 
   const sectionNumber = getSectionNumber(section)
