@@ -1,5 +1,6 @@
 import { lookupTableA } from '../tables/table'
 import { lookupTable41, lookupTable42, lookupTable43, lookupTable44, lookupTable45, lookupTable47 } from '../tables/table-4'
+import { calculateForecastTime } from '../utils/calculate-forecast-time'
 
 /**
  * @description Returns a template generator for the given template number
@@ -53,8 +54,8 @@ const template42 = (section: Buffer) => {
     minAfterRefTime: section.readUInt8(16),
     /** Indicator of unit of time range (see Code [Table 4.4](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-4.shtml)) */
     unitOfTimeRangeIndicator: section.readUInt8(17),
-    /** Forecast time */
-    forecastTime: section.readUInt32BE(18),
+    /** Forecast time offset */
+    forecastTimeOffset: section.readUInt32BE(18),
     /** Type of first fixed surface (see Code [Table 4.5](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-5.shtml)) */
     surface1Type: section.readUInt8(22),
     /** Scale factor of first fixed surface */
@@ -74,7 +75,7 @@ const template42 = (section: Buffer) => {
   }
 }
 
-const lookupTemplate42 = (discipline: number, templateValues: ReturnType<typeof template42>) => {
+const lookupTemplate42 = (discipline: number, refTime: Date, templateValues: ReturnType<typeof template42>) => {
   const { parameterCategory, parameterNumber, surface1Type, surface1Scale, surface1Value, surface2Type, surface2Scale, surface2Value, ...newValues } = templateValues
 
   const category = lookupTable41(discipline, parameterCategory)
@@ -82,6 +83,8 @@ const lookupTemplate42 = (discipline: number, templateValues: ReturnType<typeof 
 
   const surface1 = { ...lookupTable45(surface1Type), scale: surface1Scale, value: surface1Value }
   const surface2 = { ...lookupTable45(surface2Type), scale: surface2Scale, value: surface2Value }
+
+  const unitOfTimeRangeIndicator = lookupTable44(newValues.unitOfTimeRangeIndicator)
 
   return {
     ...newValues,
@@ -92,7 +95,9 @@ const lookupTemplate42 = (discipline: number, templateValues: ReturnType<typeof 
     /** Forecast generating process identified */
     forecastGenProcess: lookupTableA(newValues.forecastGenProcess),
     /** Indicator of unit of time range */
-    unitOfTimeRangeIndicator: lookupTable44(newValues.unitOfTimeRangeIndicator),
+    unitOfTimeRangeIndicator,
+    /** Forecast time */
+    forecastTime: calculateForecastTime(refTime, newValues.forecastTimeOffset, unitOfTimeRangeIndicator),
     /** First fixed surface */
     surface1,
     /** Second fixed surface */

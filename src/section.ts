@@ -82,7 +82,7 @@ const parseSection = (section: Buffer | null) => {
 export const lookupSections = (parsedSections: SectionValues) => {
   const [ins, ids, lus, gds, pds, drs, bms, ds, es] = parsedSections
 
-  return [lookupSection0(ins), lookupSection1(ids), lus, lookupSection3(gds), lookupSection4(pds, ins), lookupSection5(drs), bms, lookupSection7(ds, drs), es] as Sections
+  return [lookupSection0(ins), lookupSection1(ids), lus, lookupSection3(gds), lookupSection4(pds, ins, ids), lookupSection5(drs), bms, lookupSection7(ds, drs), es] as Sections
 }
 
 /**
