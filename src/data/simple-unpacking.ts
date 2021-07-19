@@ -18,7 +18,7 @@ export const simpleUnpacking = (drs: DataRepresentationSectionValues, data: Buff
   const EE = Math.pow(2, E)
 
   const bufferString = data.reduce((acc, value) => acc + value.toString(2).padStart(8, '0'), '')
-  const chunks = bufferString.match(new RegExp(`.{1,${nb}}`, 'g'))
+  const chunks = bufferString.match(new RegExp(`.{${nb}}`, 'g'))
 
   if (!chunks) throw new Error('Unable to split data into chunks')
 
