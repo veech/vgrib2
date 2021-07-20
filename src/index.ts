@@ -38,3 +38,5 @@ const parseNoLookup = (data: Buffer): Array<GRIBPacketValues> => {
 }
 
 export const GRIB = { parse, parseNoLookup }
+
+export * from './types/grib'
