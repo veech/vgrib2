@@ -1,3 +1,5 @@
+import { Buffer } from './lib/buffer'
+
 import { GRIBPacket, GRIBPacketValues } from './types/grib'
 import { Sections, SectionValues } from './types/sections'
 
@@ -9,7 +11,7 @@ import { Sections, SectionValues } from './types/sections'
 export const splitGribChunks = (data: Buffer): Array<Buffer> => {
   if (data.length === 0) return []
 
-  const length = Number(data.slice(8, 16).readBigUInt64BE())
+  const length = Number(data.slice(8, 16).readBigUInt64BE(0))
 
   const gribData = data.slice(0, length)
 

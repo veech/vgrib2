@@ -1,3 +1,5 @@
+import { Buffer } from '../lib/buffer'
+
 import { getTemplate3, lookupTemplate3 } from '../templates/template-3'
 import { lookupTable31 } from '../tables/table-3'
 

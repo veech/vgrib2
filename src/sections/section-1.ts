@@ -1,3 +1,5 @@
+import { Buffer } from '../lib/buffer'
+
 import { lookupTable0, lookupTableC } from '../tables/table'
 import { lookupTable12, lookupTable14 } from '../tables/table-1'
 

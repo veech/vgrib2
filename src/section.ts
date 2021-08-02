@@ -1,3 +1,5 @@
+import { Buffer } from './lib/buffer'
+
 import { parseSection0, parseSection1, parseSection2, parseSection3, parseSection4, parseSection5, parseSection6, parseSection7, parseSection8 } from './sections'
 import { lookupSection0, lookupSection1, lookupSection3, lookupSection4, lookupSection5, lookupSection7 } from './sections'
 
@@ -17,7 +19,7 @@ export const splitSectionChunks = (gribChunk: Buffer): Array<Buffer | null> => {
     const sectionNumber = getSectionNumber(currentSection)
 
     // First section length is always 16 bytes long and is identified by the first 4 bytes being 'GRIB'
-    const length = sectionNumber === 0 ? 16 : currentSection.readUInt32BE()
+    const length = sectionNumber === 0 ? 16 : currentSection.readUInt32BE(0)
 
     const section = currentSection.slice(0, length)
     currentSection = currentSection.slice(length)

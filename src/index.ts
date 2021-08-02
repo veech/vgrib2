@@ -1,3 +1,5 @@
+import { Buffer } from './lib/buffer'
+
 import { splitGribChunks, createPacket } from './grib'
 import { splitSectionChunks, parseSections, lookupSections } from './section'
 import { GRIBPacket, GRIBPacketValues } from './types/grib'
@@ -6,8 +8,9 @@ import { GRIBPacket, GRIBPacketValues } from './types/grib'
  * @param data Buffer containing entire GRIB file contents
  * @returns Parsed GRIB file object
  */
-const parse = (data: Buffer): Array<GRIBPacket> => {
-  const gribChunks = splitGribChunks(data)
+const parse = (data: ArrayBuffer): Array<GRIBPacket> => {
+  const buffer = Buffer.from(data)
+  const gribChunks = splitGribChunks(buffer)
 
   const packets = gribChunks.map((gribChunk: Buffer) => {
     const sectionChunks = splitSectionChunks(gribChunk)

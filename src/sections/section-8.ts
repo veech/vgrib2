@@ -1,3 +1,5 @@
+import { Buffer } from '../lib/buffer'
+
 export type EndSectionValues = ReturnType<typeof parseSection8>
 export type EndSection = ReturnType<typeof parseSection8>
 

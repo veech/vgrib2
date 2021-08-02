@@ -1,3 +1,5 @@
+import { Buffer } from '../lib/buffer'
+
 import { lookupTable51 } from '../tables/table-5'
 
 /**
