@@ -56,7 +56,7 @@ export const lookupSection4 = (pds: ProductDefinitionSectionValues, ins: Indicat
       /** Product definition template */
       productDefinitionTemplate: lookupTable40(productDefinitionTemplate),
       /** Product definition */
-      productDefinition: lookupTemplate4(productDefinitionTemplate)(discipline, refTime, productDefinition)
+      productDefinition: lookupTemplate4(productDefinitionTemplate)(discipline, refTime, productDefinition as any)
     }
   }
 }

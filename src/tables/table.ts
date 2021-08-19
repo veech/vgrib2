@@ -723,6 +723,8 @@ export const lookupTableA = (code: number) => {
  */
 export const lookupTableC = (code: number) => {
   switch (code) {
+    case 0:
+      return null
     case 1:
       return 'NCEP Re-Analysis Project'
     case 2:
