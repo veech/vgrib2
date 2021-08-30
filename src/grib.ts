@@ -1,5 +1,3 @@
-import { Buffer } from './lib/buffer'
-
 import { GRIBPacket, GRIBPacketValues } from './types/grib'
 import { Sections, SectionValues } from './types/sections'
 

@@ -1,5 +1,3 @@
-import { Buffer } from '../lib/buffer'
-
 import { lookupTable32 } from '../tables/table-3'
 
 /**

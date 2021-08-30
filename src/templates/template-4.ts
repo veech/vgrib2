@@ -1,5 +1,3 @@
-import { Buffer } from '../lib/buffer'
-
 import { lookupTableA } from '../tables/table'
 import { lookupTable41, lookupTable42, lookupTable43, lookupTable44, lookupTable45, lookupTable47 } from '../tables/table-4'
 import { calculateForecastTime } from '../utils/calculate-forecast-time'

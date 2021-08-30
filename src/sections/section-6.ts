@@ -1,5 +1,3 @@
-import { Buffer } from '../lib/buffer'
-
 export type BitMapSectionValues = ReturnType<typeof parseSection6>
 export type BitMapSection = ReturnType<typeof parseSection6>
 

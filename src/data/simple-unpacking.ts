@@ -1,5 +1,3 @@
-import { Buffer } from '../lib/buffer'
-
 import { DataRepresentationSectionValues } from '../sections/section-5'
 
 /**
