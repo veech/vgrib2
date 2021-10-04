@@ -52,13 +52,13 @@ const template30 = (section: Buffer) => {
     /** Subdivisions of basic angle used to define extreme longitudes and latitudes, and direction increments */
     subdivisions,
     /** Latitude of first grid point */
-    la1: section.readInt32BE(46) * ratio,
+    la1: (section.readInt32BE(46) < 0 ? -(section.readInt32BE(46) ^ 0x80000000) : (section.readInt32BE(46))) * ratio,
     /** Longitude of first grid point */
     lo1: section.readInt32BE(50) * ratio,
     /** Resolution and component flags [Table 3.3](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-3.shtml) */
     resolution: section.readUInt8(54),
     /** Latitude of last grid point */
-    la2: section.readInt32BE(55) * ratio,
+    la2: (section.readInt32BE(55) < 0 ? -(section.readInt32BE(55) ^ 0x80000000) : (section.readInt32BE(55))) * ratio,
     /** Longitude of last grid point */
     lo2: section.readInt32BE(59) * ratio,
     /** i direction increment */
