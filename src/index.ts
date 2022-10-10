@@ -6,7 +6,7 @@ import { GRIBPacket, GRIBPacketValues } from './types/grib'
  * @param data Buffer containing entire GRIB file contents
  * @returns Parsed GRIB file object
  */
-const parse = (data: Buffer): Array<GRIBPacket> => {
+const parse = (data: Buffer | ArrayBuffer): Array<GRIBPacket> => {
   const buffer = Buffer.from(data)
   const gribChunks = splitGribChunks(buffer)
 
@@ -25,8 +25,9 @@ const parse = (data: Buffer): Array<GRIBPacket> => {
  * @param data Buffer containing entire GRIB file contents
  * @returns Parsed GRIB file object with value numbers
  */
-const parseNoLookup = (data: Buffer): Array<GRIBPacketValues> => {
-  const gribChunks = splitGribChunks(data)
+const parseNoLookup = (data: Buffer | ArrayBuffer): Array<GRIBPacketValues> => {
+  const buffer = Buffer.from(data)
+  const gribChunks = splitGribChunks(buffer)
 
   const packets = gribChunks.map((gribChunk: Buffer) => {
     const sectionChunks = splitSectionChunks(gribChunk)
