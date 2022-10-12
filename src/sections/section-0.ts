@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer/'
+
 import { lookupTable00 } from '../tables/table-0'
 
 export type IndicatorSectionValues = ReturnType<typeof parseSection0>

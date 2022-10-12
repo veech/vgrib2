@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer/'
+
 import { DataRepresentationSectionValues } from './section-5'
 
 import { convertData } from '../data'

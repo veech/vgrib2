@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer/'
+
 import { lookupTable32 } from '../tables/table-3'
 
 /**

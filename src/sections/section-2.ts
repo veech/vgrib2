@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer/'
+
 export type LocalUseSectionValues = ReturnType<typeof parseSection2>
 export type LocalUseSection = ReturnType<typeof parseSection2>
 

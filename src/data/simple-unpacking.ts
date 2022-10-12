@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer/'
+
 import { DataRepresentationSectionValues } from '../sections/section-5'
 
 /**
