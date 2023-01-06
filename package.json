@@ -27,20 +27,22 @@
   ],
   "name": "vgrib2",
   "author": "Alessandro Vecchi",
+  "contributors": [
+    "Dmitry Shirokov @runk"
+  ],
   "module": "dist/vgrib2.esm.js",
   "devDependencies": {
-    "@ericandrewlewis/bitmap": "^1.0.0",
-    "@types/buffer-from": "^1.1.0",
-    "ts-node": "^10.9.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.0",
-    "typescript": "^4.9.4"
+    "typescript": "^3.9.10"
   },
   "dependencies": {
-    "base64-js": "^1.3.1",
-    "bmp-js": "^0.1.0",
     "buffer": "^6.0.3",
-    "ieee754": "^1.2.1",
     "jpeg2000": "^1.1.0"
+  },
+  "homepage": "https://github.com/veech/vgrib2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veech/vgrib2.git"
   }
 }

@@ -12,7 +12,6 @@ const parse = (data: ArrayBuffer): Array<GRIBPacket> => {
   const buffer = Buffer.from(data)
   const gribChunks = splitGribChunks(buffer)
 
-  gribChunks.length = 3
   const packets = gribChunks.map((gribChunk: Buffer) => {
     const sectionChunks = splitSectionChunks(gribChunk)
     const sectionValues = parseSections(sectionChunks)
@@ -59,8 +58,7 @@ const lookupDataPoint = (packet: GRIBPacket, lat: number, lon: number): number |
   const y = Math.abs(Math.round((la1 - lat) / dy))
 
   const idx = y * ny + x
-  const val = packet.data[idx]
-  return val
+  return packet.data[idx]
 }
 
 export const GRIB = { parse, parseNoLookup, lookupDataPoint }
