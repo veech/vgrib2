@@ -468,6 +468,8 @@ export const lookupTable0 = (code: number) => {
  */
 export const lookupTableA = (code: number) => {
   switch (code) {
+    case 0:
+      return 'Unknown'
     case 2:
       return 'Ultra Violet Index Model'
     case 3:

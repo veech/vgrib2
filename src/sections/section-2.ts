@@ -8,6 +8,15 @@ export type LocalUseSection = ReturnType<typeof parseSection2>
  *
  * [Read more...](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_sect2.shtml)
  */
-export const parseSection2 = (_section: Buffer) => {
-  throw new Error('Section 2 is not supported')
+export const parseSection2 = (section: Buffer) => {
+  return {
+    /** Number of GRIB section */
+    sectionNumber: section.readUInt8(4),
+    /** Name of Grib section */
+    sectionName: 'Local Use Section',
+    /** Length of GRIB section */
+    length: section.readUInt32BE(0),
+    /** Section 2 Contents */
+    contents: { data: section.slice(5) }
+  }
 }

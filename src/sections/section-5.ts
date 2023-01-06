@@ -13,7 +13,8 @@ export type DataRepresentationSection = ReturnType<typeof lookupSection5>
  */
 export const parseSection5 = (section: Buffer) => {
   const dataRepresentationTemplate = section.readUInt16BE(9)
-  const dataRepresentation = getTemplate5(dataRepresentationTemplate)(section)
+  const template = getTemplate5(dataRepresentationTemplate)
+  const dataRepresentation = template(section)
 
   return {
     /** Number of GRIB section */
@@ -49,6 +50,7 @@ export const lookupSection5 = (drs: DataRepresentationSectionValues) => {
       /** Data representation template */
       dataRepresentationTemplate: lookupTable50(dataRepresentationTemplate),
       /** Data representation */
+      // @ts-ignore
       dataRepresentation: lookupTemplate5(dataRepresentationTemplate)(dataRepresentation)
     }
   }
