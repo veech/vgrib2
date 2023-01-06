@@ -10,10 +10,10 @@ import { lookupTable51, lookupTable540 } from '../tables/table-5'
 export const getTemplate5 = (template: number): typeof template50 | typeof template540 => {
   switch (template) {
     case 40:
-      return template540    
+      return template540
     case 0:
       return template50
-    
+
     default:
       throw new Error(`Template 5.${template} not defined`)
   }

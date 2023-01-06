@@ -50,8 +50,7 @@ export const lookupSection5 = (drs: DataRepresentationSectionValues) => {
       /** Data representation template */
       dataRepresentationTemplate: lookupTable50(dataRepresentationTemplate),
       /** Data representation */
-      // @ts-ignore
-      dataRepresentation: lookupTemplate5(dataRepresentationTemplate)(dataRepresentation)
+      dataRepresentation: lookupTemplate5(dataRepresentationTemplate)(dataRepresentation as any)
     }
   }
 }
