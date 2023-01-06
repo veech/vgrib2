@@ -21,6 +21,8 @@ import { GRIB } from 'vgrib2'
 const gribFile = fs.readFileSync('./path/to/file.grib2')
 
 const grib = GRIB.parse(gribFile)
+// Lookup grid data point from the first packet
+const point = GRIB.lookupDataPoint(grib[0], -39.75, 146.15)
 // No Table Lookup (useful for adding new tables)
 const gribNoLookup = GRIB.parseNoLookup(gribFile)
 ```

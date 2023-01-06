@@ -45,10 +45,10 @@ const template30 = (section: Buffer) => {
   return {
     /** Shape of Earth [Table 3.2](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-2.shtml) */
     shape: section.readUInt8(14),
-    /** Number of points along a parallel */
-    nx: section.readUInt32BE(30),
-    /** Number of points along a meridian */
-    ny: section.readUInt32BE(34),
+    /** Number of points along a parallel (W-E) */
+    ny: section.readUInt32BE(30),
+    /** Number of points along a meridian (N-S) */
+    nx: section.readUInt32BE(34),
     /** Basic angle of the initial production domain */
     basicAngle,
     /** Subdivisions of basic angle used to define extreme longitudes and latitudes, and direction increments */

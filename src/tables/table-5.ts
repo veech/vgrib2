@@ -53,3 +53,22 @@ export const lookupTable51 = (code: number) => {
       throw new Error(`Table 5.1 missing code value ${code}`)
   }
 }
+
+/**
+ * Table 5.40 - TYPE OF COMPRESSION USED
+ * [Read more](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table5-40.shtml)
+ */
+export const lookupTable540 = (code: number) => {
+  switch (code) {
+    case 0:
+      return 'Lossless'
+    case 1:
+      return 'Lossy'
+    // Range 2-254 is Reserved
+    case 255:
+      return 'Missing'
+
+    default:
+      throw new Error(`Table 5.40 missing code value ${code}`)
+  }
+}

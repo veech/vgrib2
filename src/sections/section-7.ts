@@ -3,6 +3,7 @@ import { Buffer } from 'buffer/'
 import { DataRepresentationSectionValues } from './section-5'
 
 import { convertData } from '../data'
+import { BitMapSectionValues } from './section-6'
 
 export type DataSectionValues = ReturnType<typeof parseSection7>
 export type DataSection = ReturnType<typeof lookupSection7>
@@ -31,11 +32,11 @@ export const parseSection7 = (section: Buffer) => {
  * @param drs Data Representation Section
  * @returns Data Section with corresponding string values
  */
-export const lookupSection7 = (ds: DataSectionValues, drs: DataRepresentationSectionValues) => {
+export const lookupSection7 = (ds: DataSectionValues, drs: DataRepresentationSectionValues, bms: BitMapSectionValues) => {
   return {
     ...ds,
     contents: {
-      data: convertData(drs, ds.contents.data)
+      data: convertData(drs, bms, ds.contents.data),
     }
   }
 }

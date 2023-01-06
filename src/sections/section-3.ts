@@ -24,8 +24,14 @@ export const parseSection3 = (section: Buffer) => {
     length: section.readUInt32BE(0),
     /** Section 3 Contents */
     contents: {
+      // Source of grid definition
+      definitionSource: section.readUInt8(5),
       /** Number of data points */
       numberOfPoints: section.readUInt32BE(6),
+      // Number of octets for optional list of numbers defining number of points
+      numberOfOctets: section.readUInt8(10),
+      // Interpetation of list of numbers defining number of points [Table 3.11](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-11.shtml)
+      interpretation: section.readUInt8(11),
       /** Grid definition template number [Table 3.1](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-1.shtml) */
       gridDefinitionTemplate,
       /** Grid definition values */
